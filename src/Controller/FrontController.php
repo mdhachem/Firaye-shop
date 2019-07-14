@@ -115,8 +115,8 @@ class FrontController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $contactNotification->notify($contact);
-            //$this->addFlash('success', 'message sent successfully!');
-            //return $this->redirectToRoute('contact');
+            $this->addFlash('success', 'message sent successfully!');
+            return $this->redirectToRoute('contact');
         }
         return $this->render('front/contact.html.twig', [
             'form' => $form->createView()

@@ -1,0 +1,15 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}New City{% endblock %}
+
+{% block body %}
+
+    <a class="btn btn-secondary mb-3" href="{{ path('city_index') }}">
+        <i class="fa fa-arrow-circle-left"></i>
+        {{'Back to list'|trans}}
+    </a>
+    <h1>Create new City</h1>
+    <div class="card p-3 mt-3">
+        {{ include('city/_form.html.twig') }}
+    </div>
+{% endblock %}

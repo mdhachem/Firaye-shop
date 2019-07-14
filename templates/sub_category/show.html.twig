@@ -1,0 +1,30 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}SubCategory{% endblock %}
+
+{% block body %}
+
+    <a class="btn btn-secondary mr-2" href="{{ path('sub_category_index') }}">
+        <i class="fa fa-arrow-circle-left"></i>
+        {{'Back to list'|trans}}</a>
+    <div class="card p-3 mt-3">
+    <h1>Sub Category</h1>
+    
+    {{ include('sub_category/_delete_form.html.twig') }}
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ sub_category.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ sub_category.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-primary mt-3 w-100" href="{{ path('sub_category_edit', {'id': sub_category.id}) }}">
+            <i class="fa fa-pencil-alt"></i>
+            {{'Edit'|trans}}</a>
+    </div> 
+{% endblock %}

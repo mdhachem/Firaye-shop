@@ -1,0 +1,48 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}City index{% endblock %}
+
+{% block body %}
+    <h1>City</h1>
+    <div class="mb-3">
+        <a class="btn btn-primary" href="{{ path('city_new') }}">
+            <i class="fa fa-plus"></i>
+            {{'Create new'|trans}}</a>
+    </div>
+
+    {% for message in app.flashes('error') %}
+    <div class="alert alert-danger">
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    <table class="table sortable-table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for city in cities %}
+            <tr>
+                <td>{{ city.id }}</td>
+                <td>{{ city.name }}</td>
+                <td>
+                        <a class="btn btn-primary btn-sm mr-2" href="{{ path('city_show', {'id': city.id}) }}">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                        <a class="btn btn-primary btn-sm mr-2" href="{{ path('city_edit', {'id': city.id}) }}">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

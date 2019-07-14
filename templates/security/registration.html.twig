@@ -1,0 +1,59 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Sing up{% endblock %}
+
+
+{% block body %}
+
+<h1 class="text-center">Register</h1>
+    
+                    {{ form_start(form)}}
+                    {{ form_row(form.fisrtName,{'label':'First name'})}}
+                    {{ form_row(form.lastname,{'label':'Last name'})}}
+                    {{ form_row(form.telephone,{'label':'Telephone'})}}
+                    {{ form_row(form.address,{'label':'Address'})}}
+                    {{ form_row(form.company,{'label':'Company'})}}
+                    {{ form_row(form.email,{'label':'Email'}) }}
+                    {{ form_row(form.password,{'label': 'Password'})}}
+                    {{ form_row(form.confirm_password,{'label':'Password confirmation'})}}
+                    {{ form_row(form.governorate,{'label':'Governorate'}) }}
+                    {{ form_row(form.city,{'label':'City'}) }}
+                    <div class="form-group text-center">
+                        <button class="btn btn-success account-btn w-100" type="submit">Register</button>
+                    </div>
+                    {{ form_end(form)}}
+                
+{% endblock body %}
+
+{% block javascripts %}
+<script>
+
+var $sport = $('#registration_governorate');
+
+$sport.change(function() {
+
+  var $form = $(this).closest('form');
+
+  var data = {};
+  data[$sport.attr('name')] = $sport.val();
+   // alert(JSON.stringify(data));
+
+  $.ajax({
+    url : $form.attr('action'),
+    type: $form.attr('method'),
+    data : data,
+    success: function(html) {
+
+      $('#registration_city').replaceWith(
+
+        $(html).find('#registration_city')
+      );
+
+    }
+  });
+});
+
+</script>
+
+{% endblock %}
+

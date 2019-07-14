@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}new Product{% endblock %}
+
+{% block stylesheets %}
+<style>
+.custom-file-label { opacity: 0; }
+.custom-file-input { opacity: 1; }
+
+</style>
+
+{% endblock %}
+
+
+{% block body %}
+{{ form_start(form) }}
+{{ form_widget(form) }}
+<button class="btn btn-primary w-100">
+    <i class="fa fa-check"></i>
+    {{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+{% endblock %}
+
+
+{% block javascripts %}
+<script>
+
+var $sport = $('#product_category');
+
+$sport.change(function() {
+
+  var $form = $(this).closest('form');
+
+  var data = {};
+  data[$sport.attr('name')] = $sport.val();
+    //alert(JSON.stringify(data));
+
+  $.ajax({
+    url : $form.attr('action'),
+    type: $form.attr('method'),
+    data : data,
+    success: function(html) {
+
+      $('#product_SubCategory').replaceWith(
+
+        $(html).find('#product_SubCategory')
+      );
+
+    }
+  });
+});
+
+
+
+</script>
+
+{% endblock %}

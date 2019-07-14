@@ -1,0 +1,22 @@
+{% extends 'base-admin.html.twig' %}
+
+{% block title %}New SubCategory{% endblock %}
+
+{% block stylesheets %}
+<style>
+.custom-file-label { opacity: 0; }
+.custom-file-input { opacity: 1; }
+
+</style>
+
+{% endblock %}
+
+{% block body %}
+<a class="btn btn-secondary mb-3" href="{{ path('sub_category_index') }}">
+        <i class="fa fa-arrow-circle-left"></i>back to list</a>
+
+    <h1>Create new SubCategory</h1>
+
+    {{ include('sub_category/_form.html.twig') }}
+
+{% endblock %}
